@@ -9,12 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="ActiveRoutes" Version="1.0.7" />
+    <PackageReference Include="ActiveRoutes.Meta" Version="1.0.7" />
+    <PackageReference Include="ActiveErrors" Version="1.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="3.1.2" />
+    
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="TypeKitchen" Version="1.2.7" />
-    <PackageReference Include="TypeKitchen.Differencing" Version="1.2.7" />
+    <ProjectReference Include="..\ActiveOptions\ActiveOptions.csproj" />
   </ItemGroup>
 
 </Project>

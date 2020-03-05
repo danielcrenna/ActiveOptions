@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.Extensions.Primitives;
 using TypeKitchen;
+using Validator = System.ComponentModel.DataAnnotations.Validator;
 
 namespace ActiveOptions
 {
