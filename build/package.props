@@ -11,8 +11,8 @@
     <RepositoryUrl>https://github.com/danielcrenna/ActiveOptions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>dynamic configuration</PackageTags>
-    <Version>1.0.2</Version>
-    <PackageReleaseNotes>Re-map API error events.</PackageReleaseNotes>
+    <Version>1.0.4</Version>
+    <PackageReleaseNotes>Update dependencies.</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>
