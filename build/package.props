@@ -11,8 +11,8 @@
     <RepositoryUrl>https://github.com/danielcrenna/ActiveOptions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>dynamic configuration</PackageTags>
-    <Version>1.0.4</Version>
-    <PackageReleaseNotes>Update dependencies.</PackageReleaseNotes>
+    <Version>1.0.5</Version>
+    <PackageReleaseNotes>Added support for Azure Cosmos.</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>

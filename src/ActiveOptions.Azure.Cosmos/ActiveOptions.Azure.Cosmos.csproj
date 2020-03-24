@@ -9,11 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ActiveRoutes" Version="1.0.9" />
-    <PackageReference Include="ActiveRoutes.Meta" Version="1.0.9" />
-    <PackageReference Include="ActiveErrors" Version="1.0.3" />
-    <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="3.1.2" />
-    
+    <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ActiveOptions\ActiveOptions.csproj" />
   </ItemGroup>
 
 </Project>
