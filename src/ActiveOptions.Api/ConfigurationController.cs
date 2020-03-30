@@ -30,10 +30,10 @@ namespace ActiveOptions.Api
 	{
 		private readonly IEnumerable<ICustomConfigurationBinder> _customBinders;
 		private readonly IConfigurationRoot _root;
-		private readonly IServiceProvider _serviceProvider;
-		private readonly ITypeResolver _typeResolver;
 
 		private readonly ConfigurationService _service;
+		private readonly IServiceProvider _serviceProvider;
+		private readonly ITypeResolver _typeResolver;
 
 		public ConfigurationController(IConfigurationRoot root, ITypeResolver typeResolver,
 			IServiceProvider serviceProvider, IEnumerable<ICustomConfigurationBinder> customBinders,
@@ -67,7 +67,8 @@ namespace ActiveOptions.Api
 		[DynamicHttpPatch("{section?}")]
 		[MustHaveQueryParameters("type")]
 		[Consumes(MediaTypeNames.Application.JsonPatch)]
-		public IActionResult Patch([FromQuery] string type, [FromBody] JsonPatchDocument patch, [FromRoute] string section = null)
+		public IActionResult Patch([FromQuery] string type, [FromBody] JsonPatchDocument patch,
+			[FromRoute] string section = null)
 		{
 			if (string.IsNullOrWhiteSpace(section))
 				return this.NotAcceptableError(ErrorEvents.UnsafeRequest,
@@ -214,9 +215,11 @@ namespace ActiveOptions.Api
 
 			var valueProperty = optionsType.GetProperty(nameof(IOptions<object>.Value));
 
-			var tryDeleteMethod = saveOptionsType.GetMethod(nameof(ISaveOptions<object>.TryDelete), new[] {typeof(string)});
+			var tryDeleteMethod =
+				saveOptionsType.GetMethod(nameof(ISaveOptions<object>.TryDelete), new[] {typeof(string)});
 			if (tryDeleteMethod == null || valueProperty == null)
-				return this.InternalServerError(ErrorEvents.FeatureError, $"Unexpected error: IOptions<{type}> methods failed to resolve.");
+				return this.InternalServerError(ErrorEvents.FeatureError,
+					$"Unexpected error: IOptions<{type}> methods failed to resolve.");
 
 			var deleted = (DeleteOptionsResult) tryDeleteMethod.Invoke(saveOptions, new object[] {section});
 
@@ -225,7 +228,8 @@ namespace ActiveOptions.Api
 				DeleteOptionsResult.NotFound => NotFound(),
 				DeleteOptionsResult.NoContent => NoContent(),
 				DeleteOptionsResult.Gone => this.Gone(),
-				DeleteOptionsResult.InternalServerError => this.InternalServerError(ErrorEvents.FeatureError, $"Could not delete section {section}"),
+				DeleteOptionsResult.InternalServerError => this.InternalServerError(ErrorEvents.FeatureError,
+					$"Could not delete section {section}"),
 				_ => throw new ArgumentOutOfRangeException()
 			};
 		}
@@ -255,20 +259,20 @@ namespace ActiveOptions.Api
 				switch (save)
 				{
 					case SaveOptionsResult.NotFound:
-						{
-							var addResult = (bool) tryAddMethod.Invoke(saveOptions, new object[]
+					{
+						var addResult = (bool) tryAddMethod.Invoke(saveOptions, new object[]
 						{
 							section, new Action(() =>
 							{
 								SaveOptions(prototype, saveOptions, valueProperty, model);
 							})
 						});
-							if (!addResult)
-								return this.InternalServerError(ErrorEvents.FeatureError,
-									$"Could not add existing configuration to section '{section}'");
+						if (!addResult)
+							return this.InternalServerError(ErrorEvents.FeatureError,
+								$"Could not add existing configuration to section '{section}'");
 
-							break;
-						}
+						break;
+					}
 					case SaveOptionsResult.NotModified:
 						return this.NotModified();
 				}
@@ -284,7 +288,8 @@ namespace ActiveOptions.Api
 			var template = _service.Get(type, section);
 
 			return template == null
-				? this.NotFoundError(ErrorEvents.InvalidParameter, $"Configuration sub-section path '{section}' not found.")
+				? this.NotFoundError(ErrorEvents.InvalidParameter,
+					$"Configuration sub-section path '{section}' not found.")
 				: Ok(template);
 		}
 
@@ -297,9 +302,9 @@ namespace ActiveOptions.Api
 			foreach (var member in members)
 			{
 				if (member.MemberType == AccessorMemberType.Property &&
-					member.CanWrite &&
-					member.CanRead &&
-					reader.TryGetValue(result, member.Name, out var value))
+				    member.CanWrite &&
+				    member.CanRead &&
+				    reader.TryGetValue(result, member.Name, out var value))
 				{
 					writer.TrySetValue(target, member.Name, value);
 				}

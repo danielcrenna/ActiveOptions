@@ -1,6 +1,9 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
+// Copyright (c) Daniel Crenna & Contributors. All rights reserved.
+// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+
 // Change: Fixes issue where TypeConverter is not consulted when creating an instance, which makes polymorphism impossible in configuration.
 // Change: Use TypeKitchen for faster binding
 // Change: Support polymorphism using type discrimination and use of TypeConverter

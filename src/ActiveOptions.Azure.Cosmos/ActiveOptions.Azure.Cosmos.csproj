@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="ActiveStorage.Azure.Cosmos" Version="1.0.0-pre-1" />
-    <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.6.0" />
+    <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.7.0" />
   </ItemGroup>
 
   <ItemGroup>

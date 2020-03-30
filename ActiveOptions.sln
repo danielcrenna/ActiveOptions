@@ -18,7 +18,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActiveOptions.Tests", "test
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActiveOptions.Api", "src\ActiveOptions.Api\ActiveOptions.Api.csproj", "{0566B251-857A-426C-92EC-60CBBF86E8B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActiveOptions.Azure.Cosmos", "src\ActiveOptions.Azure.Cosmos\ActiveOptions.Azure.Cosmos.csproj", "{28FD8657-BCFC-484D-8368-AEB073B82D5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActiveOptions.Azure.Cosmos", "src\ActiveOptions.Azure.Cosmos\ActiveOptions.Azure.Cosmos.csproj", "{28FD8657-BCFC-484D-8368-AEB073B82D5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActiveOptions.Sqlite", "src\ActiveOptions.Sqlite\ActiveOptions.Sqlite.csproj", "{2622A5CA-1364-4BA5-ABD3-59C9D35029D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,12 @@ Global
 		{28FD8657-BCFC-484D-8368-AEB073B82D5F}.Package|Any CPU.Build.0 = Package|Any CPU
 		{28FD8657-BCFC-484D-8368-AEB073B82D5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28FD8657-BCFC-484D-8368-AEB073B82D5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2622A5CA-1364-4BA5-ABD3-59C9D35029D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2622A5CA-1364-4BA5-ABD3-59C9D35029D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2622A5CA-1364-4BA5-ABD3-59C9D35029D0}.Package|Any CPU.ActiveCfg = Debug|Any CPU
+		{2622A5CA-1364-4BA5-ABD3-59C9D35029D0}.Package|Any CPU.Build.0 = Debug|Any CPU
+		{2622A5CA-1364-4BA5-ABD3-59C9D35029D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2622A5CA-1364-4BA5-ABD3-59C9D35029D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

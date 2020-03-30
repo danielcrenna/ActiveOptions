@@ -10,9 +10,9 @@
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/danielcrenna/ActiveOptions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>dynamic configuration</PackageTags>
-    <Version>1.0.5</Version>
-    <PackageReleaseNotes>Added support for Azure Cosmos.</PackageReleaseNotes>
+    <PackageTags>dynamic configuration options consul</PackageTags>
+    <Version>1.0.6</Version>
+    <PackageReleaseNotes>Added support for SQLite.</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>

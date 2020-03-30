@@ -27,7 +27,7 @@ namespace ActiveOptions.Azure.Cosmos
 			var optionsMonitor = new OptionsMonitorShim<CosmosStorageOptions>(source.Options);
 			_repository = new CosmosRepository<ConfigurationDocument>(slot, container, optionsMonitor, null);
 		}
-		
+
 		public bool HasChildren(string key)
 		{
 			foreach (var entry in Data)

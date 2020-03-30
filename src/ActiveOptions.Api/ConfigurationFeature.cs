@@ -9,6 +9,6 @@ namespace ActiveOptions.Api
 {
 	internal sealed class ConfigurationFeature : DynamicFeature
 	{
-		public override IList<Type> ControllerTypes { get; } = new[] { typeof(ConfigurationController) };
+		public override IList<Type> ControllerTypes { get; } = new[] {typeof(ConfigurationController)};
 	}
 }

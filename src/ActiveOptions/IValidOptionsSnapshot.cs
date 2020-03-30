@@ -5,5 +5,7 @@ using Microsoft.Extensions.Options;
 
 namespace ActiveOptions
 {
-	public interface IValidOptionsSnapshot<out T> : IOptionsSnapshot<T> where T : class, new() { }
+	public interface IValidOptionsSnapshot<out T> : IOptionsSnapshot<T> where T : class, new()
+	{
+	}
 }

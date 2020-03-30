@@ -16,7 +16,8 @@ namespace ActiveOptions.Azure.Cosmos
 {
 	public static class CosmosConfigurationHelper
 	{
-		public static Container MigrateToLatest(string slot, CosmosStorageOptions options, IConfiguration configSeed = null, SeedStrategy strategy = SeedStrategy.InsertIfNotExists)
+		public static Container MigrateToLatest(string slot, CosmosStorageOptions options,
+			IConfiguration configSeed = null, SeedStrategy strategy = SeedStrategy.InsertIfNotExists)
 		{
 			var optionsMonitor = new OptionsMonitorShim<CosmosStorageOptions>(options);
 

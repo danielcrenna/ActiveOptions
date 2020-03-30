@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) Daniel Crenna & Contributors. All rights reserved.
+// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+
+using System;
 using ActiveOptions.Azure.Cosmos.Internal;
 using ActiveStorage.Azure.Cosmos;
 using ActiveStorage.Azure.Cosmos.Configuration;
@@ -8,16 +11,21 @@ namespace ActiveOptions.Azure.Cosmos
 {
 	public static class Add
 	{
-		public static IConfigurationBuilder AddCosmosConfigurationProvider(this IConfigurationBuilder builder, string connectionString, IConfiguration configureOptions, bool reloadOnChange = false, IConfiguration configSeed = null)
+		public static IConfigurationBuilder AddCosmosConfigurationProvider(this IConfigurationBuilder builder,
+			string connectionString, IConfiguration configureOptions, bool reloadOnChange = false,
+			IConfiguration configSeed = null)
 		{
-			return builder.AddCosmosConfigurationProvider(o => { DefaultStorageOptions(connectionString, o); }, configureOptions.FastBind,
+			return builder.AddCosmosConfigurationProvider(o => { DefaultStorageOptions(connectionString, o); },
+				configureOptions.FastBind,
 				reloadOnChange, configSeed);
 		}
 
-		public static IConfigurationBuilder AddCosmosConfigurationProvider(this IConfigurationBuilder builder, string connectionString, bool reloadOnChange = false, IConfiguration configSeed = null,
+		public static IConfigurationBuilder AddCosmosConfigurationProvider(this IConfigurationBuilder builder,
+			string connectionString, bool reloadOnChange = false, IConfiguration configSeed = null,
 			Action<SaveConfigurationOptions> configureOptions = null)
 		{
-			return builder.AddCosmosConfigurationProvider(o => { DefaultStorageOptions(connectionString, o); }, configureOptions,
+			return builder.AddCosmosConfigurationProvider(o => { DefaultStorageOptions(connectionString, o); },
+				configureOptions,
 				reloadOnChange, configSeed);
 		}
 

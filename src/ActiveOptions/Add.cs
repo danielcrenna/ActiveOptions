@@ -76,5 +76,29 @@ namespace ActiveOptions
 				new FastNamedConfigureFromConfigurationOptions<TOptions>(name, config, configureBinder,
 					r.GetServices<ICustomConfigurationBinder>()));
 		}
+
+		public static IConfigurationBuilder AddSqlServerConfigurationProvider(this IConfigurationBuilder builder,
+			string connectionString,
+			IConfiguration configSeed = null)
+		{
+			return AddSqlServerConfigurationProvider(builder, connectionString, true, configSeed);
+		}
+
+		public static IConfigurationBuilder AddSqlServerConfigurationProvider(this IConfigurationBuilder builder,
+			string connectionString,
+			bool reloadOnChange, IConfiguration configSeed = null)
+		{
+			return AddSqlServerConfigurationProvider(builder, connectionString, reloadOnChange, configSeed);
+		}
+
+		public static IConfigurationBuilder AddSqlServerConfigurationProvider(this IConfigurationBuilder builder,
+			string connectionString,
+			bool reloadOnChange, IConfiguration configSeed, Action<SaveConfigurationOptions> configureAction = null)
+		{
+			throw new NotImplementedException();
+			var saveConfig = new SaveConfigurationOptions();
+			configureAction?.Invoke(saveConfig);
+			return builder;
+		}
 	}
 }
