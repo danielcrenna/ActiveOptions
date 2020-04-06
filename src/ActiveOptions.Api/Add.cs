@@ -5,6 +5,8 @@ using System;
 using ActiveRoutes;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using TypeKitchen;
 
 namespace ActiveOptions.Api
 {
@@ -43,7 +45,9 @@ namespace ActiveOptions.Api
 			mvcBuilder.Services.AddValidOptions();
 			mvcBuilder.Services.AddSaveOptions();
 
+			mvcBuilder.Services.TryAddSingleton<ITypeResolver, ReflectionTypeResolver>();
 			mvcBuilder.Services.AddSingleton<ConfigurationService>();
+
 			mvcBuilder.AddActiveRoute<ConfigurationController, ConfigurationFeature, ConfigurationApiOptions>();
 
 			return mvcBuilder;

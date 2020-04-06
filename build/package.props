@@ -11,7 +11,7 @@
     <RepositoryUrl>https://github.com/danielcrenna/ActiveOptions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>dynamic configuration options consul</PackageTags>
-    <Version>1.0.7</Version>
+    <Version>1.0.8</Version>
     <PackageReleaseNotes>Updated dependencies.</PackageReleaseNotes>
   </PropertyGroup>
 

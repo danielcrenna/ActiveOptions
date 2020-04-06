@@ -54,7 +54,7 @@ namespace ActiveOptions.Azure.Cosmos
 			o.AccountKey ??= connectionStringBuilder.AccountKey;
 			o.AccountEndpoint ??= connectionStringBuilder.AccountEndpoint;
 			o.DatabaseId ??= connectionStringBuilder.Database;
-			o.ContainerId ??= connectionStringBuilder.DefaultCollection ?? Constants.Options.DefaultContainer;
+			o.ContainerId ??= connectionStringBuilder.DefaultContainer ?? Constants.Options.DefaultContainer;
 
 			o.SharedCollection = false;
 			o.PartitionKeyPaths = connectionStringBuilder.PartitionKeyPaths ?? new[] {"/id"};

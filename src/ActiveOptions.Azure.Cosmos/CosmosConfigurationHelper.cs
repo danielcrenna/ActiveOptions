@@ -27,7 +27,7 @@ namespace ActiveOptions.Azure.Cosmos
 
 			if (configSeed != null && strategy != SeedStrategy.None)
 			{
-				var repository = new CosmosRepository<ConfigurationDocument>(slot, container, optionsMonitor, null);
+				var repository = new CosmosRepository(slot, container, optionsMonitor, null);
 
 				switch (strategy)
 				{
@@ -39,7 +39,7 @@ namespace ActiveOptions.Azure.Cosmos
 
 					case SeedStrategy.Initialize:
 					{
-						var count = repository.CountAsync().GetAwaiter().GetResult();
+						var count = repository.CountAsync<ConfigurationDocument>().GetAwaiter().GetResult();
 						if (count == 0)
 						{
 							InsertIfNotExists(repository);
@@ -53,9 +53,9 @@ namespace ActiveOptions.Azure.Cosmos
 				}
 			}
 
-			void InsertIfNotExists(ICosmosRepository<ConfigurationDocument> repository)
+			void InsertIfNotExists(ICosmosRepository repository)
 			{
-				var manifest = repository.RetrieveAsync()
+				var manifest = repository.RetrieveAsync<ConfigurationDocument>()
 					.GetAwaiter().GetResult().Select(x => x.Key).ToImmutableHashSet();
 
 				var changedKeys = new HashSet<string>();

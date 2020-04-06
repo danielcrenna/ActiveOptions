@@ -16,7 +16,7 @@ namespace ActiveOptions.Azure.Cosmos
 	public class CosmosConfigurationProvider : ConfigurationProvider, ISaveConfigurationProvider
 	{
 		private readonly IDictionary<string, string> _ids;
-		private readonly ICosmosRepository<ConfigurationDocument> _repository;
+		private readonly ICosmosRepository _repository;
 		private readonly CosmosConfigurationSource _source;
 
 		public CosmosConfigurationProvider(CosmosConfigurationSource source, string slot, Container container)
@@ -25,7 +25,7 @@ namespace ActiveOptions.Azure.Cosmos
 			_source = source;
 
 			var optionsMonitor = new OptionsMonitorShim<CosmosStorageOptions>(source.Options);
-			_repository = new CosmosRepository<ConfigurationDocument>(slot, container, optionsMonitor, null);
+			_repository = new CosmosRepository(slot, container, optionsMonitor, null);
 		}
 
 		public bool HasChildren(string key)
@@ -115,7 +115,7 @@ namespace ActiveOptions.Azure.Cosmos
 				foreach (var (k, v) in toDelete)
 				{
 					var id = v;
-					var deleted = _repository.DeleteAsync(id).GetAwaiter().GetResult();
+					var deleted = _repository.DeleteAsync<ConfigurationDocument>(id).GetAwaiter().GetResult();
 					if (deleted)
 						_ids.Remove(k);
 				}
@@ -137,7 +137,7 @@ namespace ActiveOptions.Azure.Cosmos
 					idsToDelete.Add(_ids[k]);
 				}
 
-				_repository.DeleteAsync(idsToDelete).GetAwaiter().GetResult();
+				_repository.DeleteAsync<ConfigurationDocument>(idsToDelete).GetAwaiter().GetResult();
 
 				for (var i = 0; i < keysToDelete.Count; i++)
 				{
@@ -174,7 +174,7 @@ namespace ActiveOptions.Azure.Cosmos
 				var onChange = Data.Count > 0;
 				Data.Clear();
 				_ids.Clear();
-				var data = _repository.RetrieveAsync().GetAwaiter().GetResult();
+				var data = _repository.RetrieveAsync<ConfigurationDocument>().GetAwaiter().GetResult();
 				var loadedKeys = 0;
 				foreach (var item in data)
 				{

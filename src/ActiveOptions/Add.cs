@@ -85,17 +85,8 @@ namespace ActiveOptions
 		}
 
 		public static IConfigurationBuilder AddSqlServerConfigurationProvider(this IConfigurationBuilder builder,
-			string connectionString,
-			bool reloadOnChange, IConfiguration configSeed = null)
+			string connectionString, bool reloadOnChange, IConfiguration configSeed, Action<SaveConfigurationOptions> configureAction = null)
 		{
-			return AddSqlServerConfigurationProvider(builder, connectionString, reloadOnChange, configSeed);
-		}
-
-		public static IConfigurationBuilder AddSqlServerConfigurationProvider(this IConfigurationBuilder builder,
-			string connectionString,
-			bool reloadOnChange, IConfiguration configSeed, Action<SaveConfigurationOptions> configureAction = null)
-		{
-			throw new NotImplementedException();
 			var saveConfig = new SaveConfigurationOptions();
 			configureAction?.Invoke(saveConfig);
 			return builder;
