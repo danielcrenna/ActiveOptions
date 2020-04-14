@@ -17,7 +17,8 @@ namespace ActiveOptions.Api
 		public bool Accept(ActionConstraintContext context)
 		{
 			var query = context.RouteContext.HttpContext.Request.Query;
-			if (query.Count != _matchAll.Length) return false;
+			if (query.Count < _matchAll.Length)
+				return false;
 
 			foreach (var key in _matchAll)
 				if (!query.ContainsKey(key))

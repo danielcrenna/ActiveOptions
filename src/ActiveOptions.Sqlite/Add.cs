@@ -3,6 +3,7 @@
 
 using System;
 using System.IO;
+using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.FileProviders;
 
@@ -15,6 +16,15 @@ namespace ActiveOptions.Sqlite
 			IConfiguration configSeed = null)
 		{
 			return AddSqliteConfigurationProvider(builder, null, connectionString, false, configSeed);
+		}
+
+		public static IConfigurationBuilder AddSqliteConfigurationProvider(this IConfigurationBuilder builder,
+			SqliteConnectionStringBuilder connectionStringBuilder,
+			IConfiguration configSeed = null)
+		{
+			var path = connectionStringBuilder.DataSource;
+
+			return AddSqliteConfigurationProvider(builder, null, path, false, configSeed);
 		}
 
 		public static IConfigurationBuilder AddSqliteConfigurationProvider(this IConfigurationBuilder builder,

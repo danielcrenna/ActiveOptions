@@ -20,12 +20,10 @@ using TypeKitchen.Differencing;
 
 namespace ActiveOptions.Api
 {
-	[Route("configuration")]
+	[DisplayName("Configuration")]
 	[DynamicController(typeof(ConfigurationApiOptions))]
 	[MetaCategory("Operations", "Provides diagnostic tools for server operators at runtime.")]
 	[MetaDescription("Manages configuration items.")]
-	[DisplayName("Configuration")]
-	[ApiExplorerSettings(IgnoreApi = false)]
 	public class ConfigurationController : Controller, IDynamicComponentEnabled<ConfigurationFeature>
 	{
 		private readonly IEnumerable<ICustomConfigurationBinder> _customBinders;
@@ -178,6 +176,9 @@ namespace ActiveOptions.Api
 			if (model is string json)
 				model = JsonSerializer.Deserialize(json, prototype);
 
+			if (model is JsonElement element)
+				model = element.ToObject(prototype);
+
 			var result = TryUpsert(section, model, trySaveMethod, tryAddMethod, saveOptions, prototype, valueProperty);
 			return result;
 		}
@@ -296,8 +297,8 @@ namespace ActiveOptions.Api
 		private static void SaveOptions(Type type, object saveOptions, PropertyInfo valueProperty, object result)
 		{
 			var target = valueProperty.GetValue(saveOptions);
-			var writer = WriteAccessor.Create(type, out var members);
-			var reader = ReadAccessor.Create(type);
+			var writer = WriteAccessor.Create(type, AccessorMemberTypes.Properties, AccessorMemberScope.Public, out var members);
+			var reader = ReadAccessor.Create(type, AccessorMemberTypes.Properties, AccessorMemberScope.Public);
 
 			foreach (var member in members)
 			{

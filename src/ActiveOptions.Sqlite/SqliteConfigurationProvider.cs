@@ -36,20 +36,18 @@ namespace ActiveOptions.Sqlite
 
 				foreach (var (k, v) in map)
 				{
-					if (!Data.TryGetValue(k, out var value))
-						continue; // deprecated?
+					if (v == default)
+						continue;
+
+					Data.TryGetValue(k, out var value);
 
 					var before = value;
-
-					if (before.Equals(v, StringComparison.Ordinal))
+					if (before != null && before.Equals(v, StringComparison.Ordinal))
 						continue; // no change
 
-					if (v == null)
-						continue; // not null constraint violation
-
-					var count = db.Execute(UpdateValue, new {s = k, Value = v}, t);
+					var count = db.Execute(UpdateValue, new { Key = k, Value = v}, t);
 					if (count == 0)
-						count = db.Execute(InsertValue, new {s = k, Value = v}, t);
+						count = db.Execute(InsertValue, new {Key = k, Value = v}, t);
 					if (count > 0)
 						changed = true;
 				}
