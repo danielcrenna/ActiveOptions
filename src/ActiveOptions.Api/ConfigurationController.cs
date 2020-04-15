@@ -24,7 +24,7 @@ namespace ActiveOptions.Api
 	[DynamicController(typeof(ConfigurationApiOptions))]
 	[MetaCategory("Operations", "Provides diagnostic tools for server operators at runtime.")]
 	[MetaDescription("Manages configuration items.")]
-	public class ConfigurationController : Controller, IDynamicComponentEnabled<ConfigurationFeature>
+	public class ConfigurationController : Controller, IDynamicFeatureToggle<ConfigurationFeature>
 	{
 		private readonly IEnumerable<ICustomConfigurationBinder> _customBinders;
 		private readonly IConfigurationRoot _root;
