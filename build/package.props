@@ -11,8 +11,8 @@
     <RepositoryUrl>https://github.com/danielcrenna/ActiveOptions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>dynamic configuration options consul</PackageTags>
-    <Version>1.0.10</Version>
-    <PackageReleaseNotes>Update dependencies.</PackageReleaseNotes>
+    <Version>1.0.11</Version>
+    <PackageReleaseNotes>Allow for external processes to deserialize option bodies.</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>

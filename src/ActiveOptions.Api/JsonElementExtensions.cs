@@ -11,12 +11,22 @@ namespace ActiveOptions.Api
 	{
 		public static object ToObject(this JsonElement element, Type type, JsonSerializerOptions options = null)
 		{
-			var bufferWriter = new MemoryStream();
-			using (var writer = new Utf8JsonWriter(bufferWriter))
+			var ms = new MemoryStream();
+			using (var writer = new Utf8JsonWriter(ms))
 			{
 				element.WriteTo(writer);
 			}
-			return JsonSerializer.Deserialize(bufferWriter.ToArray(), type, options);
+			return JsonSerializer.Deserialize(ms.ToArray(), type, options);
+		}
+
+		public static object ToObject(this JsonDocument document, Type type, JsonSerializerOptions options = null)
+		{
+			var ms = new MemoryStream();
+			using (var writer = new Utf8JsonWriter(ms))
+			{
+				document.WriteTo(writer);
+			}
+			return JsonSerializer.Deserialize(ms.ToArray(), type, options);
 		}
 	}
 }

@@ -173,11 +173,18 @@ namespace ActiveOptions.Api
 				return this.InternalServerError(ErrorEvents.FeatureError,
 					$"Unexpected error: IOptions<{type}> methods failed to resolve.");
 
-			if (model is string json)
-				model = JsonSerializer.Deserialize(json, prototype);
-
-			if (model is JsonElement element)
-				model = element.ToObject(prototype);
+			switch (model)
+			{
+				case string json:
+					model = JsonSerializer.Deserialize(json, prototype);
+					break;
+				case JsonElement element:
+					model = element.ToObject(prototype);
+					break;
+				case JsonDocument document:
+					model = document.ToObject(prototype);
+					break;
+			}
 
 			var result = TryUpsert(section, model, trySaveMethod, tryAddMethod, saveOptions, prototype, valueProperty);
 			return result;
