@@ -33,14 +33,23 @@ namespace ActiveOptions.Api
 			IConfigurationRoot configurationRoot, IConfiguration config)
 		{
 			mvcBuilder.Services.AddSingleton(configurationRoot);
-			return AddConfigurationApi(mvcBuilder, config.FastBind);
+
+			return AddConfigurationApi(mvcBuilder, o =>
+			{
+				config.FastBind(o);
+			});
 		}
 
 		public static IMvcCoreBuilder AddConfigurationApi(this IMvcCoreBuilder mvcBuilder,
 			Action<ConfigurationApiOptions> configureAction = null)
 		{
 			if (configureAction != null)
-				mvcBuilder.Services.Configure(configureAction);
+			{
+				mvcBuilder.Services.Configure<ConfigurationApiOptions>(o =>
+				{
+					configureAction.Invoke(o);
+				});
+			}
 
 			mvcBuilder.Services.AddValidOptions();
 			mvcBuilder.Services.AddSaveOptions();

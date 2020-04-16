@@ -21,7 +21,6 @@ using TypeKitchen.Differencing;
 namespace ActiveOptions.Api
 {
 	[DisplayName("Configuration")]
-	[DynamicController(typeof(ConfigurationApiOptions))]
 	[MetaCategory("Operations", "Provides diagnostic tools for server operators at runtime.")]
 	[MetaDescription("Manages configuration items.")]
 	public class ConfigurationController : Controller, IDynamicFeatureToggle<ConfigurationFeature>
