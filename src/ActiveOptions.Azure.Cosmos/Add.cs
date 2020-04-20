@@ -12,25 +12,35 @@ namespace ActiveOptions.Azure.Cosmos
 	public static class Add
 	{
 		public static IConfigurationBuilder AddCosmosConfigurationProvider(this IConfigurationBuilder builder,
-			string connectionString, IConfiguration configureOptions, bool reloadOnChange = false,
+			string connectionString, IConfiguration configureOptions, Action<CosmosStorageOptions> configureDatabase = null, bool reloadOnChange = false,
 			IConfiguration configSeed = null)
 		{
-			return builder.AddCosmosConfigurationProvider(o => { DefaultStorageOptions(connectionString, o); },
+			return builder.AddCosmosConfigurationProvider(o =>
+				{
+					DefaultStorageOptions(connectionString, o);
+					configureDatabase?.Invoke(o);
+				},
 				configureOptions.FastBind,
 				reloadOnChange, configSeed);
 		}
 
 		public static IConfigurationBuilder AddCosmosConfigurationProvider(this IConfigurationBuilder builder,
 			string connectionString, bool reloadOnChange = false, IConfiguration configSeed = null,
+			Action<CosmosStorageOptions> configureDatabase = null,
 			Action<SaveConfigurationOptions> configureOptions = null)
 		{
-			return builder.AddCosmosConfigurationProvider(o => { DefaultStorageOptions(connectionString, o); },
+			return builder.AddCosmosConfigurationProvider(o =>
+				{
+					DefaultStorageOptions(connectionString, o);
+					configureDatabase?.Invoke(o);
+				},
 				configureOptions,
 				reloadOnChange, configSeed);
 		}
 
 		public static IConfigurationBuilder AddCosmosConfigurationProvider(this IConfigurationBuilder builder,
-			Action<CosmosStorageOptions> configureDatabase, Action<SaveConfigurationOptions> configureOptions = null,
+			Action<CosmosStorageOptions> configureDatabase, 
+			Action<SaveConfigurationOptions> configureOptions = null,
 			bool reloadOnChange = false, IConfiguration configSeed = null)
 		{
 			var dbConfig = new CosmosStorageOptions();

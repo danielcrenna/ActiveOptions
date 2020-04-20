@@ -3,9 +3,9 @@
 
 using ActiveStorage.Azure.Cosmos;
 
-namespace ActiveOptions.Azure.Cosmos.Internal
+namespace ActiveOptions.Azure.Cosmos
 {
-	internal sealed class ConfigurationDocument : DocumentEntityBase<ConfigurationDocument>
+	public class ConfigurationDocument : DocumentEntityBase<ConfigurationDocument>
 	{
 		public string Key { get; set; }
 		public string Value { get; set; }
