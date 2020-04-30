@@ -102,13 +102,13 @@ namespace ActiveOptions.Azure.Cosmos
 
 				foreach (var (k, v) in toAdd)
 				{
-					_repository.UpsertAsync(new ConfigurationDocument { Id = $"{Guid.NewGuid()}", Key = k, Value = v})
+					_repository.UpsertAsync(new ConfigurationDocument {Id = $"{Guid.NewGuid()}", Key = k, Value = v})
 						.GetAwaiter().GetResult();
 				}
 
 				foreach (var (k, id) in toUpdateIds)
 				{
-					_repository.UpsertAsync(new ConfigurationDocument { Id = id, Key = k, Value = toUpdateValues[id]})
+					_repository.UpsertAsync(new ConfigurationDocument {Id = id, Key = k, Value = toUpdateValues[id]})
 						.GetAwaiter().GetResult();
 				}
 
@@ -155,8 +155,8 @@ namespace ActiveOptions.Azure.Cosmos
 				return;
 
 			// TODO: This needs to be fixed, because without the Id it will always create a new document
-			var document = _repository.UpsertAsync(new ConfigurationDocument { Key = key, Value = value }).GetAwaiter()
-				.GetResult();
+			var document = _repository.UpsertAsync(new ConfigurationDocument {Key = key, Value = value})
+				.GetAwaiter().GetResult();
 
 			lock (Data)
 			{

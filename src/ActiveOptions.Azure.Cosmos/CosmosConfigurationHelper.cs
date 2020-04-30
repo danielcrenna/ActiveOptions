@@ -64,7 +64,7 @@ namespace ActiveOptions.Azure.Cosmos
 					if (manifest.Contains(k))
 						continue;
 
-					repository.CreateAsync(new ConfigurationDocument { Id = $"{Guid.NewGuid()}", Key = k, Value = v})
+					repository.CreateAsync(new ConfigurationDocument {Id = $"{Guid.NewGuid()}", Key = k, Value = v})
 						.GetAwaiter().GetResult();
 
 					changedKeys.Add(k);
